@@ -1,9 +1,9 @@
 # CUSTOMER BEHAVIOR ANALYSIS
 ## Introduction
-A store who sell their products on the ecommmerce platform such as Tiki, Lazada, Shopee, etc. The had just achieved 10 billions VND for gross revenue and they want to double gross revenue at 20 billions in the next month. This project used a part of data from their sample customer order and Google Analytics. I found that the store should focus on launching effectively campaigns on Google, Youtube, Facebook and their website in the mid-week and mid-month.
+A store who sell their products on the ecommmerce platform such as Tiki, Lazada, Shopee. The had just achieved 10 billions VND for gross revenue and they want to double gross revenue at 20 billions in the next month. This project used a part of data from their sample customer order and Google Analytics. I found that the store should focus on launching effectively campaigns on Google, Youtube, Facebook and their website in the mid-week and mid-month.
 
 ### Tool
-- Python (import data, cleaning data, analysis)
+- Python (import data, cleaning data, analysis): Pandas, Numpy, Mathplotlip
 - Power BI (visualization)
 
 ### Dataset & Code
@@ -125,6 +125,39 @@ After investigating why the number of orders on Friday and the mid-month days wa
 
 
 ### Success Rate
-![image](https://github.com/user-attachments/assets/40a1beea-d0f3-4276-b30d-ec48705c7581)
+![image](https://github.com/user-attachments/assets/0aeadf42-35e8-46e9-8fc2-6fec164aa566)
+There is an 80.02% success rate for orders, and the reason may be that customers want to change the product or address after placing the order. Among the canceled orders, 82.4% were canceled only once, and these customers had a 50% success rate. This suggests that the cancellations were not due to any fault of the store.
 
+### Google Analytics
+```python
+df_gg_ana['platform'] = df_gg_ana['Source / Medium'].apply(lambda x: re.split('/',x, 1)[0])
+df_gg_fil_revenue = df_gg_ana[df_gg_ana['Revenue'] > 0]
+df_gg_fil_revenue['platform2'] = df_gg_fil_revenue['platform'].apply(lambda x: "Google" if "oogle" in x
+                                                                     else "Direct" if "direct" in x
+                                                                     else "Youtube" if "youtube" in x
+                                                                     else "Facebook" if "facebook" in x
+                                                                     else "Newsletter" if "newsletter" in x
+                                                                     else "Messenger" if "messenger" in x
+                                                                     else "Yahoo" if "yahoo" in x
+                                                                     else "Workplace" if "workplace" in x
+                                                                     else "Bing" if "bing" in x
+                                                                     else "Linhkiendoc" if "linhkiendoc" in x
+                                                                     else "Vnexpress" if "vnexpress" in x
+                                                                     else "Instagram" if "instagram" in x
+                                                                     else "Duckduckgo" if "duckduckgo" in x
+                                                                     else "Tinhte" if "tinhte" in x
+                                                                     else "Getpocket" if "getpocket" in x
+                                                                     else "News.zing" if "news.zing" in x
+                                                                     else "Ecosia" if "ecosia" in x
+                                                                     else "other"
+                                                                     )
+```
+![image](https://github.com/user-attachments/assets/60c8289f-964f-4386-a5b8-3d8678977f96)
+
+
+Data from Google Analytics shows that Google, YouTube, Facebook, and the store's website generate the highest revenue and order numbers. However, it also indicates that they have run many advertising campaigns on these platforms, especially on Google. But the Bounce Rate and Conversion Rate on YouTube are not effective, indicating that the advertising campaign on this platform is not attracting new customers. The Conversion Rate is very low across all platforms, suggesting that the marketing campaigns are ineffective, and most customers are driven by product discounts.
+
+## Recommendation
+- The store should focus on running advertising and content marketing campaigns that are appealing to customers. Utilizing short videos and content aligned with current trends could help increase attraction, as well as improve the Conversion Rate, Bounce Rate, and transactions on each platform.
+- The focus should primarily be on major social media platforms like Google, Facebook, Tiktok, and YouTube for advertising, to reach the right potential and target customers for the product. Time and budget should be allocated to invest in promotional content on these key platforms.
 
